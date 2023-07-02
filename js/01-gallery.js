@@ -23,5 +23,11 @@ galleryEl.addEventListener('click', galleryModalOpen);
 function galleryModalOpen(e) {
 	e.preventDefault();
 	if (e.target.nodeName !== 'IMG') return;
-	basicLightbox.create(`<img width="1400" height="900" src="${e.target.dataset.source}">`).show();
+	const modal = basicLightbox.create(`<img width="1400" height="900" src="${e.target.dataset.source}">`);
+	modal.show();
+	galleryEl.addEventListener('keydown', e => {
+		if (e.code === 'Escape') {
+			modal.close();
+		}
+	});
 }
